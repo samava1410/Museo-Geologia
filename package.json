@@ -1,0 +1,27 @@
+{
+  "name": "museo-geologia",
+  "version": "1.0.0",
+  "description": "Aplicacion Web para el Museo de Ingenieria Geologica UPTC Sogamoso",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samava1410/Museo-Geologia.git"
+  },
+  "keywords": [
+    "museo",
+    "geologia",
+    "uptc",
+    "estudiantes",
+    "noticias",
+    "agenda"
+  ],
+  "author": "Santiago Marino Vasquez - Laura Daniela Rocha Gama - Yesica Andrea Duarte Barrera - Jose Manuel Cordoba Sandoval - Leidy Jazmin Duarte Barrera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samava1410/Museo-Geologia/issues"
+  },
+  "homepage": "https://github.com/samava1410/Museo-Geologia#readme"
+}
