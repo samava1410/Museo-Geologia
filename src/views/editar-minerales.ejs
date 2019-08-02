@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+
+<head>
+    <title>Modificar Mineral</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <nav class="p-3 mb-2 bg-dark text-white">
+        <br>
+        <br>
+        <h1 align="center" style="font-family:verdana;">Modificar Mineral</h1>
+        <a class="nav-link" style="color:white;" align="center" href="http://localhost:8080/webTransacciones">INICIO</a>
+        <br>
+    </nav>
+
+    </br>
+
+    <div class="container">
+        <div class="row">
+            <!-- Form -->
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/actualizarMineral/<%= mineral._id %>" method="POST">
+                            <!-- Radio Buttons-->
+                            <fieldset class="form-group">
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-4 col-form-label">Nombre</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="nombre"
+                                            placeholder="Ingrese un nombre para el mineral" value="<%= mineral.nombre %>">
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-4 col-form-label">Cantidad</label>
+                                    <div class="col-sm-8">
+                                        <input type="Number" class="form-control" name="cantidad" id="cedula"
+                                            placeholder="Ingrese la cantidad de ejemplares" value="<%= mineral.cantidad %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-4 col-form-label">Descripcion</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="descripcion"
+                                            placeholder="Ingrese una descripcion" value="<%= mineral.descripcion %>">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-dark btn-block">
+                                    ACTUALIZAR
+                                </button>
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

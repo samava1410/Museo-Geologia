@@ -18,8 +18,6 @@ router.post('/login', async (req, res) => {
     const usuarios = await schemaUsuario.find();
     var flag = false;
 
-    console.log(req.body);
-
     for (var i = 0; i < usuarios.length; i++) {
 
         if (usuarios[i].email == req.body.email && usuarios[i].contrasena == req.body.contrasena) {
@@ -38,7 +36,7 @@ router.post('/login', async (req, res) => {
 
 router.get('/minerales', async (req, res) => {
     const minerales = await schemaMineral.find();
-    res.render('minerales', { minerales });
+    res.render('minerales', { minerales, "mensaje": "" });
 });
 
 router.post('/minerales', (req, res) => {
@@ -47,7 +45,7 @@ router.post('/minerales', (req, res) => {
     res.redirect('minerales');
 });
 
-router.get('/delete/:id', async (req, res) => {
+router.get('/eliminarMineral/:id', async (req, res) => {
     const id = req.params.id;
     await schemaMineral.deleteOne({ _id: id });
     res.redirect('/minerales');
@@ -61,6 +59,49 @@ router.post('/registrar', (req, res) => {
 
 router.post('/contacto', (req, res) => {
     mailController.sendEmail(req, res);
+});
+
+router.get('/actualizarMineral/:id', async (req, res) => {
+    const id = req.params.id;
+    const mineral = await schemaMineral.findById(id);
+    res.render('editar-minerales', { mineral });
+});
+
+router.post('/actualizarMineral/:id', async (req, res) => {
+    const id = req.params.id;
+    await schemaMineral.update({ _id: id }, req.body);
+    res.redirect('/minerales');
+});
+
+router.get('/buscar', async (req, res) => {
+    const minerales = await schemaMineral.find();
+    res.render('minerales', { minerales, "mensaje": "" });
+}); 
+
+router.post('/buscar', async (req, res) => {
+
+    const mineral = await schemaMineral.find();
+    var flag = false;
+    var mineralTemp;
+    var position;
+
+    for (var i = 0; i < mineral.length; i++) {
+
+        if (req.body.nombreBuscar == mineral[i].nombre) {
+            flag = true;
+            position = i + 1;
+            mineralTemp = mineral[i];
+        }
+
+    }
+
+    if (flag) {
+        res.render('minerales', { mineralTemp, "mensaje": "", position });
+    }
+    else {
+        res.render('minerales', { "position": 1, "mensaje": "No se encontro ningun mineral con el nombre: " + req.body.nombreBuscar });
+    }
+ 
 });
 
 module.exports = router;
