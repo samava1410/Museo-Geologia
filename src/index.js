@@ -1,4 +1,3 @@
-const path = require('path');
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -10,16 +9,18 @@ mongoose.connect('mongodb://localhost/Museo-Geologia', { useNewUrlParser: true }
 
 mongoose.set('useCreateIndex', true);
 
+//Otras configuraciones
+//app.use(express.json());
+app.use('/static', express.static(__dirname + '/static'));
+app.use(express.urlencoded({extended: false}));
+
 //Configuracion de las vistas
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 //Configuracion de las rutas
 const routes = require('./routes/routes');
 app.use('/', routes);
-
-//Otras configuraciones
-app.use(express.urlencoded({extended: false}));
 
 //Iniciar servidor Express
 app.listen(3000, () => {

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1//static/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/static/css/animate.min.css" rel="stylesheet">
+  <link href="/static/css/owl.carousel.css" rel="stylesheet">
+  <link href="/static/css/owl.transitions.css" rel="stylesheet">
+  <link href="/static/css/prettyPhoto.css" rel="stylesheet">
+  <link href="/static/css/main.css" rel="stylesheet">
+  <link href="/static/css/responsive.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+  <header id="header">
+    <nav id="main-menu" class="navbar navbar-default navbar-fixed-top" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h2 style="color: #02A1A4">Museo Universitario</h2>
+          </divs>
+
+
+
+        </div>
+        <!--/.container-->
+    </nav>
+    <!--/nav-->
+  </header>
+  </br>
+  <div class="container">
+    <div class="row">
+      <!-- Form -->
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="card">
+          <div class="card-body">
+            <form action="/minerales" method="POST">
+              <!-- Radio Buttons-->
+              <fieldset class="form-group">
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label">Nombre</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" name="nombre" placeholder="Ingrese un elemento"
+                      required="complete la informacion">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label">Cantidad</label>
+                  <div class="col-sm-8">
+                    <input type="Number" class="form-control" name="cantidad" id="cedula"
+                      placeholder="cantidad de elementos" required="complete la informacion">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-4 col-form-label">Descripcion</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" name="descripcion" placeholder="Ingrese una Descripcion"
+                      required="complete la informacion">
+                  </div>
+                </div>
+
+
+
+
+                <button type="submit" class="btn  btn-block" style="color: #02A1A4">
+                  AGREGAR
+                </button>
+            </form>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <br>
+  <br>
+  <!--- table -->
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <table class="table table-bordered" style="color: #02A1A4" width="1200" align="center">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Descripcion</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i = 0; i < minerales.length; i++){ %>
+          <tr>
+            <td><%= i + 1 %></td>
+            <td><%= minerales[i].nombre %></td>
+            <td><%= minerales[i].cantidad %></td>
+            <td><%= minerales[i].descripcion %></td>
+            <td>
+              <a href="/delete/<%= minerales[i]._id %>" class="btn btn-danger"></a>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>
