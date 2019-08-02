@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const session = require('express-session');
+const morgan = require('morgan')
 
 //Conexion con la BD Mongo
 mongoose.connect('mongodb://localhost/Museo-Geologia', { useNewUrlParser: true })
@@ -13,6 +15,8 @@ mongoose.set('useCreateIndex', true);
 //app.use(express.json());
 app.use('/static', express.static(__dirname + '/static'));
 app.use(express.urlencoded({extended: false}));
+app.use(session({secret: '123456', resave: true, saveUninitialized: true}));
+app.use(morgan('dev'));//MIDDLEWARE HTTP
 
 //Configuracion de las vistas
 app.set('views', __dirname + '/views');

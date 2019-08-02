@@ -10,8 +10,13 @@ router.get('/', (req, res) => {
     res.render('index', { "mensaje": "" });
 });
 
-router.get('/login', (req, res) => {
-    res.render('login', { "mensaje": "" });
+router.get('/login', async (req, res) => {
+    if (req.session.mail) {
+        res.redirect('minerales');
+    }
+    else {
+        res.render('login', { "mensaje": "" });
+    }
 });
 
 router.post('/login', async (req, res) => {
@@ -26,6 +31,7 @@ router.post('/login', async (req, res) => {
     }
 
     if (flag) {
+        req.session.mail = req.body.email;
         res.redirect('minerales');
     }
     else {
@@ -35,8 +41,15 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/minerales', async (req, res) => {
-    const minerales = await schemaMineral.find();
-    res.render('minerales', { minerales, "mensaje": "" });
+
+    if (req.session.mail) {
+        const minerales = await schemaMineral.find();
+        res.render('minerales', { minerales, "mensaje": "" });
+    }
+    else {
+        res.redirect('login');
+    }
+
 });
 
 router.post('/minerales', (req, res) => {
@@ -76,7 +89,7 @@ router.post('/actualizarMineral/:id', async (req, res) => {
 router.get('/buscar', async (req, res) => {
     const minerales = await schemaMineral.find();
     res.render('minerales', { minerales, "mensaje": "" });
-}); 
+});
 
 router.post('/buscar', async (req, res) => {
 
@@ -101,7 +114,7 @@ router.post('/buscar', async (req, res) => {
     else {
         res.render('minerales', { "position": 1, "mensaje": "No se encontro ningun mineral con el nombre: " + req.body.nombreBuscar });
     }
- 
+
 });
 
 module.exports = router;
