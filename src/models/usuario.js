@@ -2,6 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schemaUsuario = new Schema({
+
+    nombres: {
+        type: String,
+        match: [/^[a-zA-Z]+$/, "Los nombres solo pueden tener caracteres alfabeticos"],
+        required: "El nombre es obligatorio",
+    },
+    
     email: {
         type: String,
         trim: true,
